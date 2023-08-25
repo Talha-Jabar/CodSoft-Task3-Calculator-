@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(210, 214, 217);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  #calculator {
+    background-color: #2580ff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+
+  .button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .operator-button {
+    background-color: #ffc906;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .clear-button {
+    background-color: #fd1d46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .equal-button {
+    background-color: #2e07f5;
+    color: #fff;
+    grid-column: span 4;
+    display: grid;
+    grid-gap: 8px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .operator-button:hover {
+    background-color: #feed04;
+    transform: scale(1.1);
+  }
+
+  .clear-button:hover {
+    background-color: #ef0000;
+    transform: scale(1.1);
+  }
+
+  .equal-button:hover {
+    background-color: #1d0092;
+    transform: scale(1.1);
+  }
+
+  .button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+  }
+
+  .button:active {
+    transform: scale(0.9);
+  }
+
+  .clear-button:active {
+    transform: scale(0.9);
+  }
+
+  .equal-button:active {
+    transform: scale(0.9);
+  }
+
+  .operator-button:active {
+    transform: scale(0.9);
+  }
+
+  #display {
+    grid-column: 1 / -1;
+    background-color: #555;
+    color: #fff;
+    padding: 10px;
+    font-size: 24px;
+    text-align: right;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+<div id="calculator">
+  <div id="display">0</div>
+  <button class="operator-button" onclick="appendToDisplay('+')">+</button>
+  <button class="operator-button" onclick="appendToDisplay('-')">-</button>
+  <button class="operator-button" onclick="appendToDisplay('*')">*</button>
+  <button class="operator-button" onclick="appendToDisplay('/')">/</button>
+  <button class="clear-button" onclick="clearDisplay()">C</button>
+  <button class="button" onclick="appendToDisplay('9')">9</button>
+  <button class="button" onclick="appendToDisplay('8')">8</button>
+  <button class="button" onclick="appendToDisplay('7')">7</button>
+  <button class="button" onclick="appendToDisplay('6')">6</button>
+  <button class="button" onclick="appendToDisplay('5')">5</button>
+  <button class="button" onclick="appendToDisplay('4')">4</button>
+  <button class="button" onclick="appendToDisplay('3')">3</button>
+  <button class="button" onclick="appendToDisplay('2')">2</button>
+  <button class="button" onclick="appendToDisplay('1')">1</button>
+  <button class="button" onclick="appendToDisplay('0')">0</button>
+  <button class="button" onclick="appendToDisplay('.')">.</button>
+
+  <button class="equal-button" onclick="calculate()">=</button>
+</div>
+<script>
+  let displayValue = '0';
+
+  function updateDisplay() {
+    document.getElementById('display').innerText = displayValue;
+  }
+
+  function clearDisplay() {
+    displayValue = '0';
+    updateDisplay();
+  }
+
+  function appendToDisplay(val) {
+    if (displayValue === '0') {
+      displayValue = val;
+    } else {
+      displayValue += val;
+    }
+    updateDisplay();
+  }
+
+  function calculate() {
+    try {
+      displayValue = eval(displayValue).toString();
+    } catch (error) {
+      displayValue = 'Error';
+    }
+    updateDisplay();
+  }
+</script>
+</body>
+</html>
